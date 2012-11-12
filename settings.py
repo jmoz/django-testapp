@@ -13,7 +13,6 @@ AUTOLOAD_SITECONF = 'indexes'
 SECRET_KEY = '=r-$b*8hglm+858&9t043hlm6-&6-3d3vfc4((7yd0dbrakhvi'
 
 INSTALLED_APPS = (
-    'core',
 #    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.auth',
@@ -21,6 +20,7 @@ INSTALLED_APPS = (
     'djangotoolbox',
     'autoload',
     'dbindexer',
+    'core',
 
     # djangoappengine should come last, so it can override a few manage.py commands
     'djangoappengine',

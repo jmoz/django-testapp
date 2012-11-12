@@ -1,0 +1,18 @@
+[
+  {
+    "model": "core.post",
+    "pk": 1,
+    "fields": {
+      "title": "This is a post",
+      "text": "And this is some really great content."
+    }
+  },
+  {
+    "model": "core.post",
+    "pk": 2,
+    "fields": {
+      "title": "This is a another post",
+      "text": "And this is some content that's not as good as the previous post."
+    }
+  }
+]
