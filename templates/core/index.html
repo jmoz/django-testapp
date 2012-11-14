@@ -1,6 +1,9 @@
-<p><a href="{% url post_add %}">Add post</a></p>
+{% extends "base.html" %}
+
+{% block content %}
 {% for p in posts %}
-<p>{{ p.title }}</p>
+<h2>{{ p.title }}</h2>
 <p>{{ p.text }}</p>
-<p>{{ p.time_ago }}</p>
+<p><small>{{ p.time_ago }}</small></p>
 {% endfor %}
+{% endblock %}

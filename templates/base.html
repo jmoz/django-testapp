@@ -1,53 +1,38 @@
-<!DOCTYPE html 
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-    dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
-    xml:lang="{% firstof LANGUAGE_CODE 'en' %}"
-    lang="{% firstof LANGUAGE_CODE 'en' %}">
-  <head>
-    <title>{% block title %}{% endblock %} - Nonrel-testapp</title>
+<!DOCTYPE html>
+{% load bootstrap_toolkit %}
+<html>
 
-    {% block css %}
-    {% endblock %}
+<head>
+    <title>django-nonrel testapp with django-bootstrap-toolkit</title>
+    {% bootstrap_stylesheet_tag %}
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+        }
+    </style>
+</head>
 
-    {% block preload_js %}
-    {% endblock %}
+<body>
 
-    {% block extra-head %}{% endblock %}
-  </head>
-
-  <body>
-    <div id="header">
-      <a id="logo" href="/">Nonrel-testapp</a>
+<div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="/">django-nonrel testapp with django-bootstrap-toolkit</a>
+            <ul class="nav">
+                <li><a href="{% url post_add %}">Add Post</a></li>
+            </ul>
+        </div>
     </div>
+</div>
 
-    <div class="columns">
-      <div id="content" class="column">
-        {% block content-header %}
-          {% if error %}<div class="error">{{ error }}</div>{% endif %}
-          {% if info %}<div class="info">{{ info }}</div>{% endif %}
-          {% if messages %}
-            {% for message in messages %}
-              <div class="info">{{ message }}</div>
-            {% endfor %}
-          {% endif %}
-        {% endblock %}
+<div class="container">
+    {% block content %}No content{% endblock %}
+</div>
 
-        {% block content %}{% endblock %}
-      </div>
-
-      <div id="sidebar" class="column">
-        {% block sidebar %}
-        {% endblock %}
-      </div>
+<div class="navbar navbar-fixed-bottom">
+    <div class="navbar-inner">
+        <div class="container">
+            <p class="navbar-text pull-right">By <a href="http://jmoz.co.uk">James Morris</a> <a href="http://twitter.com/jwmoz">@jwmoz</a>. Based on <a href="https://github.com/django-nonrel/django-testapp">django-testapp</a>, powered by <a href="https://github.com/django-nonrel/django-nonrel">django-nonrel</a> and <a href="https://github.com/dyve/django-bootstrap-toolkit">django-bootstrap-toolkit</a>.</p>
+        </div>
     </div>
-
-    <div id="footer">
-      <p>Powered by <a href="https://github.com/django-nonrel">Django-nonrel</a></p>
-    </div>
-
-    {% block js %}
-    {% endblock %}
-  </body>
-</html>
+</div>
