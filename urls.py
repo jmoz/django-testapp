@@ -2,10 +2,14 @@ from django.conf.urls.defaults import *
 from core.views import PostCreate
 from core.models import Post
 from django.views.generic import ListView
+from django.contrib import admin
 
 handler500 = 'djangotoolbox.errorviews.server_error'
 
+admin.autodiscover()
+
 urlpatterns = patterns('',
+	(r'^admin/', include(admin.site.urls)),
     ('^_ah/warmup$', 'djangoappengine.views.warmup'),
     url(r'^post/add/$', PostCreate.as_view(), name='post_add'),
     url('^$', 
