@@ -4,7 +4,11 @@
 {% for p in posts %}
 <h2>{{ p.title }}</h2>
 <p>{{ p.text }}</p>
-{% if p.tags %}<p><em>{{ p.tags|join:', ' }}</em></p>{% endif %}
+{% if p.tags %}<p><em>
+{% for tag in p.tags %}
+<a href="{% url tagged tag=tag %}">{{ tag }}</a>{% if not forloop.last %},{% endif %}
+{% endfor %}
+</em></p>{% endif %}
 <p><small>{{ p.time_ago }}</small></p>
 {% endfor %}
 {% endblock %}
