@@ -4,6 +4,7 @@
 {% for p in posts %}
 <h2>{{ p.title }}</h2>
 <p>{{ p.text }}</p>
+{% if p.tags %}<p><em>{{ p.tags|join:', ' }}</em></p>{% endif %}
 <p><small>{{ p.time_ago }}</small></p>
 {% endfor %}
 {% endblock %}

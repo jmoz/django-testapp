@@ -17,3 +17,27 @@ class PostTest(TestCase):
 
 		self.assertEqual('foo', p.title)
 		self.assertEqual('footext', p.text)
+
+	def testAddingTags(self):
+		p = Post()
+		p.title = 'foo'
+		p.text = 'footext'
+		p.tags = ['foo', 'bar']
+		p.save()
+
+		self.assertEqual(2, len(p.tags))
+
+		p = Post()
+		p.title = 'foo2'
+		p.text = 'footext2'
+		p.tags = ['foo']
+		p.save()
+		
+		result = Post.objects.filter(tags='foo')
+		self.assertEqual(2, len(result))
+
+		result = Post.objects.filter(tags='bar')
+		self.assertEqual(1, len(result))
+
+		result = Post.objects.filter(tags='baz')
+		self.assertEqual(0, len(result))

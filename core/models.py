@@ -1,11 +1,30 @@
 from django.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, CharField
 from datetime import datetime
+from djangotoolbox.fields import ListField
+
+
+class StringListField(CharField):
+	def prepare_value(self, value):
+		return ', '.join(value)
+
+	def to_python(self, value):
+		if not value:
+			return []
+		return [item.strip() for item in value.split(',')]
+
+
+class TagsField(ListField):
+	"""extend and implement formfield to fix error"""
+	def formfield(self, **kwargs):
+		return models.Field.formfield(self, StringListField, **kwargs)
+
 
 class Post(models.Model):
 	title = models.CharField(max_length=200)
 	text = models.CharField(max_length=255)
 	date_created = models.DateTimeField(auto_now_add=True)
+	tags = TagsField()
 
 	@property
 	def time_ago(self):
